@@ -9,6 +9,19 @@ const routes: RouteRecordRaw[] = [
       title: '首页',
     },
   },
+  {
+    path: '/admin',
+    component: () => import('~/layout/Manager.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('~/pages/admin/Links.vue'),
+        meta: {
+          title: 'Linker Admin',
+        },
+      },
+    ],
+  },
 ]
 
 const router = createRouter({
