@@ -22,6 +22,14 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/:username',
+    component: () => import('~/pages/Profile.vue'),
+    meta: {
+      title: '',
+    },
+    props: true,
+  },
 ]
 
 const router = createRouter({
