@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`Counter.vue > should render 1`] = `
+"<div flex=\\"\\" items-center=\\"\\" cursor-pointer=\\"\\" style=\\"width: 34px; height: 20px; background-color: rgb(103, 107, 95); border-radius: 20px; overflow: hidden;\\">
+  <div transition-transform-200=\\"\\" bg-white=\\"\\" class=\\"dot rounded-50%\\" style=\\"width: 16px; height: 16px; transform: translateX(0);\\"></div>
+</div>"
+`;

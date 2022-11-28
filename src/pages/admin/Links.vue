@@ -137,7 +137,7 @@ const diyClass = computed(() => {
   </div>
   <!-- preview -->
   <div class="preview" flex justify-center items-center absolute top-0 right-0 h-screen>
-    <div class="device" relative w-352px h-724px p-16px>
+    <div class="device" relative w-352px h-724px p-16px overflow-hidden>
       <iframe w-full h-full src="/ysansan" frameborder="0" />
     </div>
   </div>
@@ -198,6 +198,7 @@ const diyClass = computed(() => {
     width: 100%;
     height: 100%;
     content: "";
+    pointer-events: none;
     background: url(~/assets/img/preview-device.svg) 100% 100% no-repeat;
   }
 }

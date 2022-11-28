@@ -8,6 +8,11 @@ export function isNumber(str: string | number): boolean {
   return false
 }
 
+/**
+ * 生成最近N天的日期
+ * @param num : 天数
+ * @returns
+ */
 export function generateDay(num: number): string[] {
   const now = dayjs()
   const result: string[] = []
@@ -16,7 +21,11 @@ export function generateDay(num: number): string[] {
   return result
 }
 
-export function uuid() {
+/**
+ * 生成唯一标识
+ * @returns
+ */
+export function uuid(): string {
   let random
   let uuid = ''
   for (let i = 0; i < 32; i++) {
@@ -27,4 +36,11 @@ export function uuid() {
     uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16) // 解释3
   }
   return uuid
+}
+
+/**
+ * 复制内容至粘贴板
+ */
+export function copy(text: string) {
+  return text
 }

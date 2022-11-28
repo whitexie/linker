@@ -49,8 +49,8 @@ function handleClick() {
 </script>
 
 <template>
-  <div flex items-center cursor-pointer :style="switchStyle" @click="handleClick">
-    <div transition-transform-200 bg-white class="rounded-50%" :style="dotStyle" />
+  <div class="switch" flex items-center cursor-pointer :style="switchStyle" @click="handleClick">
+    <div transition-transform-200 bg-white class="dot rounded-50%" :style="dotStyle" />
   </div>
 </template>
 
