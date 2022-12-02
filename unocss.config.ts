@@ -20,6 +20,8 @@ export default defineConfig({
       sand: '#f3f3f1',
       marble: '#e0e2d9',
       concrete: '#676b5f',
+      chalk: '#eff0ec',
+      pansy: '#8129d9',
     },
   },
   presets: [

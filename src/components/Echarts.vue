@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/ban-ts-comment -->
 <script setup lang="ts">
 import * as echarts from 'echarts/core'
 import {
@@ -13,12 +14,13 @@ import {
 import { UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 import type { EChartsOption } from '~/types/echarts'
-import { isNumber } from '~/utils/util'
+import { debounced } from '~/utils/util'
 
-const props = withDefaults(defineProps<Props>(), {
-  width: '100%',
-  height: '100%',
-})
+interface Props {
+  option: EChartsOption
+}
+
+const props = defineProps<Props>()
 
 echarts.use([
   ToolboxComponent,
@@ -31,21 +33,25 @@ echarts.use([
   UniversalTransition,
 ])
 
-interface Props {
-  width: number | string
-  height: number | string
-  option: EChartsOption
+let myChart: echarts.ECharts
+const echartDom = ref<HTMLElement | null>(null)
+// const { width, height } = useElementSize(echartDom)
+
+function setOption(option?: EChartsOption) {
+  const t = option || props.option
+  if (!myChart)
+    return
+  myChart.setOption(t)
 }
 
-let myChart: echarts.ECharts
+const resize = debounced(() => {
+  if (!myChart)
+    return
+  myChart.resize()
+}, 200)
 
-const echartStyle = computed(() => {
-  const width = isNumber(props.width) ? `${props.width}px` : props.width
-  const height = isNumber(props.height) ? `${props.height}px` : props.height
-  return {
-    width,
-    height,
-  }
+watch(props.option, (newValue) => {
+  setOption(newValue)
 })
 
 onMounted(() => {
@@ -53,16 +59,28 @@ onMounted(() => {
   if (!el)
     return
   myChart = echarts.init((el as HTMLElement))
-  myChart.setOption(props.option)
-  setTimeout(() => {
-  }, 3000)
+  // @ts-expect-error
+  window.echart = myChart
+  window.addEventListener('resize', resize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resize)
+})
+
+defineExpose({
+  setOption,
+  resize,
 })
 </script>
 
 <template>
-  <div ref="echartDom" class="echart" :style="echartStyle" />
+  <div ref="echartDom" class="echart" />
 </template>
 
 <style lang="scss" scoped>
-
+.echart {
+  width: 100%;
+  height: 100%;
+}
 </style>

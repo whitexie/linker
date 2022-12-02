@@ -87,7 +87,7 @@ const activeTextColor = (index: number) => {
             </div>
           </div>
           <!-- 头像 -->
-          <div class="item h-12 w-12 flex items-center cursor-pointer justify-center hover:outline hover:outline-gray">
+          <div class="item h-12 w-12 flex items-center cursor-pointer justify-center rounded-50% hover:outline hover:outline-gray">
             <img src="../assets/img/avatar.jpeg" class="w-40px h-40px rounded-50%">
           </div>
         </div>

@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { getUserInfo } from '~/api/users'
+// import type { Ref } from 'vue'
+// import { getUserInfo } from '~/api/users'
+import { useUser } from '~/store'
 
 interface Props {
   username: string
+  isPreview?: boolean
 }
-const props = defineProps<Props>()
-const userInfo = ref<UserInfo>()
-
-onMounted(async () => {
-  const res = await getUserInfo({ username: props.username })
-  userInfo.value = res
-})
+defineProps<Props>()
+// const props = withDefaults(defineProps<Props>(), {
+//   isPreview: false,
+// })
+const userInfo = useUser()
 </script>
 
 <template>

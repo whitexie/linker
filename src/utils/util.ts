@@ -13,11 +13,11 @@ export function isNumber(str: string | number): boolean {
  * @param num : 天数
  * @returns
  */
-export function generateDay(num: number): string[] {
+export function generateDay(num: number, format = 'YYYY年MM月DD日'): string[] {
   const now = dayjs()
   const result: string[] = []
   for (let i = num; i > 0; i--)
-    result.push(now.subtract(i, 'day').format('MM月DD日'))
+    result.push(now.subtract(i, 'day').format(format))
   return result
 }
 
@@ -43,4 +43,33 @@ export function uuid(): string {
  */
 export function copy(text: string) {
   return text
+}
+/**
+ * 节流
+ * @param func
+ * @param await
+ * @returns
+ */
+export function throttle(func: Function, delay: number): () => void {
+  let lock = false
+  return (...args: any[]) => {
+    if (lock)
+      return
+    lock = true
+    setTimeout(() => {
+      func(...args)
+      lock = false
+    }, delay)
+  }
+}
+
+export function debounced(func: Function, delay: number): () => void {
+  let timer: NodeJS.Timer
+  return (...args: any[]) => {
+    if (timer)
+      clearTimeout(timer)
+    timer = setTimeout(() => {
+      func(...args)
+    }, delay)
+  }
 }

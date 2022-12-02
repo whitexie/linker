@@ -23,6 +23,10 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/login',
+    component: () => import('~/pages/Login.vue'),
+  },
+  {
     path: '/:username',
     component: () => import('~/pages/Profile.vue'),
     meta: {

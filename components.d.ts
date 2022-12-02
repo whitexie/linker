@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Collapse: typeof import('./src/components/Collapse.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
     Echarts: typeof import('./src/components/Echarts.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
