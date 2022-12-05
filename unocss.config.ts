@@ -22,6 +22,8 @@ export default defineConfig({
       concrete: '#676b5f',
       chalk: '#eff0ec',
       pansy: '#8129d9',
+      teasel: '#5d18a2',
+      pebble: '#a8aaa2',
     },
   },
   presets: [

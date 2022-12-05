@@ -39,3 +39,9 @@ declare namespace API {
     list: EchartItem[]
   }
 }
+
+interface Theme {
+  id: number | string
+  name: string
+  bgImgUrl: string
+}

@@ -36,28 +36,6 @@ function dragover(e: DragEvent) {
   e.preventDefault()
 }
 /** ========== 拖拽相关 end ========== */
-
-/** ========== preview缩放 start ========== */
-const previewWrapRef = ref<HTMLElement>()
-const previewRef = ref<HTMLElement>()
-const { width: wrapWidth } = useElementSize(previewWrapRef)
-const { width, height } = useElementSize(previewRef)
-
-const previewStyle = computed(() => {
-  return {
-    width: `${wrapWidth.value}px`,
-  }
-})
-
-const deviceStyle = computed(() => {
-  const result: Record<string, string> = {}
-  if (width.value < 396 || height.value < 914)
-    result.transform = `scale(${(width.value / 396) * (height.value / 914)}) translate(-50%, -50%)`
-
-  return result
-})
-
-/** ========== preview缩放 end ========== */
 </script>
 
 <template>
@@ -155,14 +133,6 @@ const deviceStyle = computed(() => {
             </div>
           </li>
         </transition-group>
-      </div>
-    </div>
-    <!-- preview -->
-    <div ref="previewWrapRef" class="preview-wrap w-full border-l-1 border-color-#ddd max-w-570px">
-      <div ref="previewRef" :style="previewStyle" class="preview mx-auto fixed top-0 right-0 max-w-570px h-screen">
-        <div :style="deviceStyle" class="device w-352px h-724px relative p-16px absolute top-50% left-50% translate--50% transform-origin-top-left">
-          <iframe w-full h-full :src="`/${userStore.username}`" frameborder="0" />
-        </div>
       </div>
     </div>
   </div>

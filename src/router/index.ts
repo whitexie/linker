@@ -15,10 +15,11 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        component: () => import('~/pages/admin/Links.vue'),
-        meta: {
-          title: 'Linker Admin',
-        },
+        component: () => import('~/pages/admin/Custom.vue'),
+        children: [
+          { path: '', component: () => import('~/pages/admin/Links.vue') },
+          { path: 'appearance', component: () => import('~/pages/admin/Appearance.vue') },
+        ],
       },
     ],
   },
